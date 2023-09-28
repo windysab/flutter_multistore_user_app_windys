@@ -98,7 +98,8 @@ class SignInWidgetState extends State<SignInWidget> {
                   textInputAction: TextInputAction.done,
                   focusNode: _passNode,
                   controller: _passwordController,
-                )),
+                ),
+                ),
             Container(
               margin: const EdgeInsets.only(right: Dimensions.marginSizeSmall),
               child: Row(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_multistore_user_app_windys/pages/home/home_page.dart';
 // import 'package:flutter_fic7_app/data/datasources/auth_local_datasource.dart';
 
 import '../../bloc/logout/logout_bloc.dart';
@@ -35,13 +36,7 @@ class _HomePageState extends State<DashboardPage> {
     });
 
     _screens = [
-      const Center(
-        child: Column(
-          children: [
-            Text('Home'),
-          ],
-        ),
-      ),
+      const HomePage(),
       const Center(
         child: Text('Order'),
       ),
@@ -92,7 +87,7 @@ class _HomePageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(token)),
+      // appBar: AppBar(title: Text(token)),
       key: _scaffoldKey,
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Theme.of(context).primaryColor,

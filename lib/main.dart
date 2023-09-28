@@ -6,7 +6,9 @@ import 'package:flutter_multistore_user_app_windys/pages/auth/auth_page.dart';
 import 'package:flutter_multistore_user_app_windys/pages/splash/splash_page.dart';
 import 'package:flutter_multistore_user_app_windys/utils/light_themes.dart';
 
+import 'bloc/categories/categories_bloc.dart';
 import 'bloc/logout/logout_bloc.dart';
+import 'bloc/products/products_bloc.dart';
 import 'bloc/register/register_bloc.dart';
 import 'pages/dashboard/dashboard_page.dart';
 
@@ -28,6 +30,12 @@ class MyApp extends StatelessWidget {
           create: (context) => LoginBloc(),
         ),
         BlocProvider(create: (context) => LogoutBloc()),
+        BlocProvider(
+          create: (context) => ProductsBloc(),
+        ),
+        BlocProvider(
+          create: (context) => CategoriesBloc(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -36,18 +44,16 @@ class MyApp extends StatelessWidget {
         home: FutureBuilder<bool>(
           future: AuthLocalDatasource().isLogin(),
           builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              if (snapshot.data!) {
-                return const DashboardPage();
-              } else {
-                return const AuthPage();
-              }
-            } else {
+            if (snapshot.connectionState == ConnectionState.waiting) {
               return const Scaffold(
                 body: Center(
                   child: CircularProgressIndicator(),
                 ),
               );
+            } else if (snapshot.hasData && snapshot.data!) {
+              return const DashboardPage();
+            } else {
+              return const AuthPage();
             }
           },
         ),
