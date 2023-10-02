@@ -10,10 +10,19 @@ part 'products_bloc.freezed.dart';
 
 class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
   ProductsBloc() : super(const _Initial()) {
-    on<_GetAll>((event, emit) async{
+    on<_GetAll>((event, emit) async {
       emit(const _Loading());
       final result = await ProductRemoteDatasource().getProducts();
       result.fold(
+        (l) => emit(_Error(l)),
+        (r) => emit(_Loaded(r)),
+      );
+    });
+    on<_GetByCategory>((event, emit) async {
+      emit(const _Loading());
+      final response = await ProductRemoteDatasource()
+          .getProductsByCategory(event.categoryId);
+      response.fold(
         (l) => emit(_Error(l)),
         (r) => emit(_Loaded(r)),
       );

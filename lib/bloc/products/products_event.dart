@@ -8,4 +8,6 @@ class ProductsEvent with _$ProductsEvent {
   // const factory ProductsEvent.getProductsByCategory(String id) =
   //     _GetProductsByCategory;
   // const factory ProductsEvent.getProductsByBrand(String id) = _GetProductsByBrand;
+
+   const factory ProductsEvent.getByCategory(int categoryId) = _GetByCategory;
 }

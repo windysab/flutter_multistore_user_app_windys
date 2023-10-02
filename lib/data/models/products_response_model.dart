@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 class ProductsResponseModel {
@@ -37,14 +36,14 @@ class ProductsResponseModel {
 class Product {
   int? id;
   String? name;
-  String? descripton;
+  String? description;
   int? price;
   String? imageProduct;
 
   Product({
     this.id,
     this.name,
-    this.descripton,
+    this.description,
     this.price,
     this.imageProduct,
   });
@@ -56,7 +55,7 @@ class Product {
   factory Product.fromMap(Map<String, dynamic> json) => Product(
         id: json["id"],
         name: json["name"],
-        descripton: json["descripton"],
+        description: json["description"],
         price: json["price"],
         imageProduct: json["image_product"],
       );
@@ -64,7 +63,7 @@ class Product {
   Map<String, dynamic> toMap() => {
         "id": id,
         "name": name,
-        "descripton": descripton,
+        "descripton": description,
         "price": price,
         "image_product": imageProduct,
       };

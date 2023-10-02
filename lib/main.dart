@@ -7,6 +7,7 @@ import 'package:flutter_multistore_user_app_windys/pages/splash/splash_page.dart
 import 'package:flutter_multistore_user_app_windys/utils/light_themes.dart';
 
 import 'bloc/categories/categories_bloc.dart';
+import 'bloc/checkout/checkout_bloc.dart';
 import 'bloc/logout/logout_bloc.dart';
 import 'bloc/products/products_bloc.dart';
 import 'bloc/register/register_bloc.dart';
@@ -35,6 +36,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => CategoriesBloc(),
+        ),
+        BlocProvider(
+          create: (context) => CheckoutBloc(),
         ),
       ],
       child: MaterialApp(
