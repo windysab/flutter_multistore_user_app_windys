@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_multistore_user_app_windys/utils/price_ext.dart';
 
-
 import 'package:fluttertoast/fluttertoast.dart';
 
-
-
+import '../../../bloc/checkout/checkout_bloc.dart';
 import '../../../data/models/products_response_model.dart';
 import '../../../utils/color_resources.dart';
 import '../../../utils/custom_themes.dart';
@@ -202,11 +200,11 @@ class CartBottomSheetState extends State<CartBottomSheet> {
                     child: CustomButton(
                         buttonText: 'Add to Cart',
                         onTap: () {
-                          // context.read<CheckoutBloc>().add(
-                          //       CheckoutEvent.addToCart(
-                          //           widget.product, quantity),
-                          //     );
-                          // Navigator.pop(context);
+                          context.read<CheckoutBloc>().add(
+                                CheckoutEvent.addToCart(
+                                    widget.product, quantity),
+                              );
+                          Navigator.pop(context);
                         }),
                   ),
                   const SizedBox(width: Dimensions.paddingSizeDefault),

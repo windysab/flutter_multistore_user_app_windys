@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 import '../../../bloc/checkout/checkout_bloc.dart';
 import '../../../data/models/products_response_model.dart';
 import '../../../utils/color_resources.dart';
@@ -9,6 +8,7 @@ import '../../../utils/custom_themes.dart';
 import '../../../utils/dimensions.dart';
 import '../../../utils/images.dart';
 import '../../base_widgets/show_custom_snakbar.dart';
+import '../../cart/cart_page.dart';
 import 'cart_bottom_sheet.dart';
 
 class BottomCartView extends StatefulWidget {
@@ -55,8 +55,8 @@ class _BottomCartViewState extends State<BottomCartView> {
               child: Stack(children: [
                 GestureDetector(
                     onTap: () {
-                      // Navigator.of(context).push(MaterialPageRoute(
-                      //     builder: (context) => const CartPage()));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const CartPage()));
                     },
                     child: Image.asset(Images.cartArrowDownImage,
                         color: ColorResources.getPrimary(context))),
@@ -74,13 +74,12 @@ class _BottomCartViewState extends State<BottomCartView> {
                     child: BlocBuilder<CheckoutBloc, CheckoutState>(
                       builder: (context, state) {
                         return state.map(
+                          loading: (_) => const CircularProgressIndicator(),
                           loaded: (value) {
                             int totalQty = 0;
-                            value.products.forEach(
-                              (element) {
-                                totalQty += element.quantity;
-                              },
-                            );
+                            for (var element in value.products) {
+                              totalQty += element.quantity;
+                            }
                             return Text(
                               '$totalQty',
                               style: titilliumSemiBold.copyWith(

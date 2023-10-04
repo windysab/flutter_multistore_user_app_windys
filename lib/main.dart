@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_multistore_user_app_windys/bloc/login/login_bloc.dart';
+import 'package:flutter_multistore_user_app_windys/bloc/order/order_bloc.dart';
 import 'package:flutter_multistore_user_app_windys/data/datasources/auth_local_datasource.dart';
 import 'package:flutter_multistore_user_app_windys/pages/auth/auth_page.dart';
 import 'package:flutter_multistore_user_app_windys/pages/splash/splash_page.dart';
@@ -39,6 +40,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => CheckoutBloc(),
+        ),
+        BlocProvider(
+          create: (context) => OrderBloc(),
         ),
       ],
       child: MaterialApp(
